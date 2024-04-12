@@ -3,9 +3,22 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 25px;
+  gap: 50px;
+  color: white;
+
+  p {
+    font-size: 48px;
+  }
+
+  .resultsArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
 
   .scoreBarWrapper {
     width: 550px;
@@ -28,12 +41,13 @@
       p {
         margin: auto;
         color: black;
+        font-size: 16px;
       }
     }
   }
 
   button {
-    padding: 25px 40px;
+    padding: 20px 30px;
     font-size: 24px;
     border: 2px solid black;
     background-color: white;

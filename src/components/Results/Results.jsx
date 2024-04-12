@@ -13,17 +13,27 @@ const Results = () => {
   const percentageIncorrect = 100 - percentageCorrect;
 
   return (
-    <div className="results">
+    <motion.div
+      className="results"
+      initial={{ opacity: 0, x: -500 }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        transition: { duration: 1 },
+      }}
+    >
       <h1>Results</h1>
-      <p>
-        Score: {correct}/{attempted}
-      </p>
-      <div className="scoreBarWrapper">
-        <div
-          className="scoreBarCorrect"
-          style={{ width: percentageCorrect + "%" }}
-        >
-          <p>{percentageCorrect > 0 ? `${percentageCorrect}%` : ""}</p>
+      <div className="resultsArea">
+        <p>
+          Score: {correct}/{attempted}
+        </p>
+        <div className="scoreBarWrapper">
+          <div
+            className="scoreBarCorrect"
+            style={{ width: percentageCorrect + "%" }}
+          >
+            <p>{percentageCorrect > 0 ? `${percentageCorrect}%` : ""}</p>
+          </div>
         </div>
       </div>
       <motion.button
@@ -33,7 +43,7 @@ const Results = () => {
       >
         Try again
       </motion.button>
-    </div>
+    </motion.div>
   );
 };
 
