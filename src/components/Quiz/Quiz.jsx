@@ -11,11 +11,13 @@ const Quiz = () => {
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
   const [answerSelected, setAnswerSelected] = useState(false);
+  const [answer, setAnswer] = useState("");
 
   const currentQuestion = asEconomicsQuestions[currentQuestionIndex];
 
   const handleQuestionAnswered = ({ target }) => {
     setAnswerSelected(true);
+    setAnswer(target.value);
     // When correct answer selected:
     if (target.value === currentQuestion.correctOption) {
       setCorrect(correct + 1);
@@ -51,11 +53,15 @@ const Quiz = () => {
           {currentQuestion.options.map((option, optionIndex) => (
             <label key={optionIndex}>
               <motion.button
-                className={`answerBtn ${
+                className={`${
                   option === currentQuestion.correctOption
                     ? "correctAnswerBtn"
-                    : ""
-                } ${answerSelected ? "clicked" : ""}`}
+                    : "incorrectAnswerBtns"
+                } ${answerSelected ? "answered" : ""} ${
+                  answer === option
+                    ? "correctAnswerSelected"
+                    : "incorrectAnswerSelected"
+                }`}
                 name={`question${currentQuestion.question}`}
                 onClick={handleQuestionAnswered}
                 value={option}
