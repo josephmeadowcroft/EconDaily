@@ -5,6 +5,7 @@ import asEconomicsQuestions from "../data/asEconomicsQuestions.json";
 
 const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
 
   const currentQuestion = asEconomicsQuestions[currentQuestionIndex];
 
@@ -24,28 +25,37 @@ const Quiz = () => {
     }
   };
 
+  const handleQuestionAnswered = () => {
+    setScore(score + 1);
+  };
+
   return (
     <div className="quiz">
-      <h1>AQA AS Economics MCQs</h1>
-      <h2>Question {currentQuestion.question}</h2>
-      <img
-        src={currentQuestion.image}
-        alt={`Question ${currentQuestion.question}`}
-      />
-      <div>
-        {currentQuestion.options.map((option, optionIndex) => (
-          <label key={optionIndex}>
-            <button
-              className="answerButton"
-              name={`question${currentQuestion.question}`}
-            >
-              {option}
-            </button>
-          </label>
-        ))}
+      <div className="header">
+        <h1>AQA AS Economics MCQs</h1>
+        <p>Score: {score}</p>
       </div>
-      <button onClick={handleNextQuestion}>Next Question</button>
-      <button onClick={handlePreviousQuestion}>Previous Question</button>
+      <div className="questionArea">
+        <h2>Question {currentQuestion.question}</h2>
+        <img
+          src={currentQuestion.image}
+          alt={`Question ${currentQuestion.question}`}
+        />
+        <div>
+          {currentQuestion.options.map((option, optionIndex) => (
+            <label key={optionIndex}>
+              <button
+                className="answerButton"
+                name={`question${currentQuestion.question}`}
+              >
+                {option}
+              </button>
+            </label>
+          ))}
+        </div>
+        <button onClick={handleNextQuestion}>Next Question</button>
+        <button onClick={handlePreviousQuestion}>Previous Question</button>
+      </div>
     </div>
   );
 };
