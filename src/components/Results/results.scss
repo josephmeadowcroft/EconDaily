@@ -1,0 +1,16 @@
+.results {
+  height: 100%;
+  width: 100%;
+
+  .allResults {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      padding: 30px 50px;
+    }
+  }
+  
+}
