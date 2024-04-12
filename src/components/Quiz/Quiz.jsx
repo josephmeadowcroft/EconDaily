@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./quiz.scss";
-import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
+import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { motion } from "framer-motion";
 
 const Quiz = () => {
@@ -14,7 +14,7 @@ const Quiz = () => {
   const [answer, setAnswer] = useState("");
   const [attempted, setAttempted] = useState(0);
 
-  const currentQuestion = asEconomicsQuestions[currentQuestionIndex];
+  const currentQuestion = asEconomicsQuestionsP2[currentQuestionIndex];
 
   const handleQuestionAnswered = ({ target }) => {
     setAnswerSelected(true);
@@ -30,7 +30,7 @@ const Quiz = () => {
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
+    if (currentQuestionIndex + 1 < asEconomicsQuestionsP2.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswerSelected(false);
     } else {
@@ -38,12 +38,32 @@ const Quiz = () => {
     }
   };
 
+  //Timer
+  const [totalSeconds, setTotalSeconds] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTotalSeconds((seconds) => seconds + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
   return (
     <div className="quiz">
       <div className="header">
         <h1>AQA AS Economics MCQs</h1>
-        <p>Score: {correct}</p>
-        <p>Incorrect: {incorrect}</p>
+        <div className="questionInfo">
+          <p>
+            Timer:{" "}
+            {`${minutes < 10 ? "0" : ""}${minutes}:${
+              seconds < 10 ? "0" : ""
+            }${seconds}`}
+          </p>
+          <p>
+            Answered: {attempted}/{asEconomicsQuestionsP2.length}
+          </p>
+        </div>
       </div>
       <div className="questionArea">
         <img
