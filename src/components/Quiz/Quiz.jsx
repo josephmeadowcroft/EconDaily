@@ -1,20 +1,17 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./quiz.scss";
 import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
+import { motion } from "framer-motion";
 
 const Quiz = () => {
   const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  const [incorrect, setIncorrect] = useState(0);
 
   const currentQuestion = asEconomicsQuestions[currentQuestionIndex];
-
-  useEffect(() => {
-    if (currentQuestionIndex > asEconomicsQuestions) {
-    }
-  });
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
@@ -33,8 +30,17 @@ const Quiz = () => {
   };
 
   const handleQuestionAnswered = ({ target }) => {
+    // When correct answer selected:
     if (target.value === currentQuestion.correctOption) {
-      setScore(score + 1);
+      setCorrect(correct + 1);
+      if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } else {
+        navigate("/results");
+      }
+    } else {
+      // When incorrect answer selected:
+      setIncorrect(incorrect + 1);
       if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
@@ -47,7 +53,8 @@ const Quiz = () => {
     <div className="quiz">
       <div className="header">
         <h1>AQA AS Economics MCQs</h1>
-        <p>Score: {score}</p>
+        <p>Score {correct}</p>
+        <p>Incorrect: {incorrect}</p>
       </div>
       <div className="questionArea">
         <img
