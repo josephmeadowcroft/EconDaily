@@ -16,6 +16,14 @@ const Quiz = () => {
     }
   };
 
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex - 1 >= 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    } else {
+      // Cannot go back
+    }
+  };
+
   return (
     <div className="quiz">
       <h1>AQA AS Economics MCQs</h1>
@@ -27,16 +35,17 @@ const Quiz = () => {
       <div>
         {currentQuestion.options.map((option, optionIndex) => (
           <label key={optionIndex}>
-            <input
-              type="radio"
+            <button
+              className="answerButton"
               name={`question${currentQuestion.question}`}
-              value={option}
-            />
-            {option}
+            >
+              {option}
+            </button>
           </label>
         ))}
       </div>
       <button onClick={handleNextQuestion}>Next Question</button>
+      <button onClick={handlePreviousQuestion}>Previous Question</button>
     </div>
   );
 };
