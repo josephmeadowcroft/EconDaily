@@ -9,8 +9,7 @@ const Results = () => {
   const correct = state?.correct;
   const attempted = state?.attempted;
 
-  const percentageCorrect = (correct / attempted) * 100;
-  const percentageIncorrect = 100 - percentageCorrect;
+  const percentageCorrect = Math.round((correct / attempted) * 100);
 
   return (
     <motion.div
