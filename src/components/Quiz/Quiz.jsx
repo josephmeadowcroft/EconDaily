@@ -51,6 +51,11 @@ const Quiz = () => {
           {currentQuestion.options.map((option, optionIndex) => (
             <label key={optionIndex}>
               <motion.button
+                className={`answerBtn ${
+                  option === currentQuestion.correctOption
+                    ? "correctAnswerBtn"
+                    : ""
+                } ${answerSelected ? "clicked" : ""}`}
                 name={`question${currentQuestion.question}`}
                 onClick={handleQuestionAnswered}
                 value={option}
@@ -62,14 +67,14 @@ const Quiz = () => {
               </motion.button>
             </label>
           ))}
+          <button
+            id="nextQuestionBtn"
+            hidden={!answerSelected}
+            onClick={handleNextQuestion}
+          >
+            Next
+          </button>
         </div>
-        <button
-          id="nextQuestionBtn"
-          hidden={!answerSelected}
-          onClick={handleNextQuestion}
-        >
-          Next
-        </button>
       </div>
     </div>
   );
