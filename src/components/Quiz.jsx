@@ -41,20 +41,19 @@ const Quiz = () => {
           src={currentQuestion.image}
           alt={`Question ${currentQuestion.question}`}
         />
-        <div>
+        <div className="answerBtns">
           {currentQuestion.options.map((option, optionIndex) => (
             <label key={optionIndex}>
-              <button
-                className="answerButton"
-                name={`question${currentQuestion.question}`}
-              >
+              <button name={`question${currentQuestion.question}`}>
                 {option}
               </button>
             </label>
           ))}
         </div>
-        <button onClick={handleNextQuestion}>Next Question</button>
-        <button onClick={handlePreviousQuestion}>Previous Question</button>
+        <div className="changeQuestionBtns">
+          <button onClick={handleNextQuestion}>Next Question</button>
+          <button onClick={handlePreviousQuestion}>Previous Question</button>
+        </div>
       </div>
     </div>
   );
