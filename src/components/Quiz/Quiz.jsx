@@ -32,7 +32,7 @@ const Quiz = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswerSelected(false);
     } else {
-      navigate("/results");
+      navigate("/results", { state: { correct } });
     }
   };
 
