@@ -36,10 +36,10 @@ const Quiz = () => {
         <p>Score: {score}</p>
       </div>
       <div className="questionArea">
-        <h2>Question {currentQuestion.question}</h2>
         <img
           src={currentQuestion.image}
           alt={`Question ${currentQuestion.question}`}
+          draggable={false}
         />
         <div className="answerBtns">
           {currentQuestion.options.map((option, optionIndex) => (
@@ -51,8 +51,8 @@ const Quiz = () => {
           ))}
         </div>
         <div className="changeQuestionBtns">
-          <button onClick={handleNextQuestion}>Next Question</button>
           <button onClick={handlePreviousQuestion}>Previous Question</button>
+          <button onClick={handleNextQuestion}>Next Question</button>
         </div>
       </div>
     </div>
