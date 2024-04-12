@@ -28,6 +28,11 @@ const Quiz = () => {
   const handleQuestionAnswered = ({ target }) => {
     if (target.value === currentQuestion.correctOption) {
       setScore(score + 1);
+      if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      } else {
+        // Handle end of quiz
+      }
     }
   };
 
