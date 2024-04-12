@@ -25,8 +25,10 @@ const Quiz = () => {
     }
   };
 
-  const handleQuestionAnswered = () => {
-    setScore(score + 1);
+  const handleQuestionAnswered = ({ target }) => {
+    if (target.value === currentQuestion.correctOption) {
+      setScore(score + 1);
+    }
   };
 
   return (
@@ -44,7 +46,11 @@ const Quiz = () => {
         <div className="answerBtns">
           {currentQuestion.options.map((option, optionIndex) => (
             <label key={optionIndex}>
-              <button name={`question${currentQuestion.question}`}>
+              <button
+                name={`question${currentQuestion.question}`}
+                onClick={handleQuestionAnswered}
+                value={option}
+              >
                 {option}
               </button>
             </label>
