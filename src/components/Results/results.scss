@@ -7,6 +7,31 @@
   align-items: center;
   gap: 25px;
 
+  .scoreBarWrapper {
+    width: 550px;
+    height: 40px;
+    background-color: red;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+
+    .scoreBarCorrect {
+      height: 100%;
+      background-color: rgb(0, 255, 0);
+      position: relative;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        margin: auto;
+        color: black;
+      }
+    }
+  }
+
   button {
     padding: 25px 40px;
     font-size: 24px;

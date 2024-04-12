@@ -12,12 +12,14 @@ const Quiz = () => {
   const [incorrect, setIncorrect] = useState(0);
   const [answerSelected, setAnswerSelected] = useState(false);
   const [answer, setAnswer] = useState("");
+  const [attempted, setAttempted] = useState(0);
 
   const currentQuestion = asEconomicsQuestions[currentQuestionIndex];
 
   const handleQuestionAnswered = ({ target }) => {
     setAnswerSelected(true);
     setAnswer(target.value);
+    setAttempted(attempted + 1);
     // When correct answer selected:
     if (target.value === currentQuestion.correctOption) {
       setCorrect(correct + 1);
@@ -32,7 +34,7 @@ const Quiz = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswerSelected(false);
     } else {
-      navigate("/results", { state: { correct } });
+      navigate("/results", { state: { correct, attempted } });
     }
   };
 
