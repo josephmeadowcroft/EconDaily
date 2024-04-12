@@ -70,6 +70,13 @@ const Quiz = () => {
           src={currentQuestion.image}
           alt={`Question ${currentQuestion.question}`}
           draggable={false}
+          style={{
+            border: `${
+              answerSelected && answer === currentQuestion.correctOption
+                ? `3px solid rgb(0, 255, 0)`
+                : `none`
+            }`,
+          }}
         />
         <div className="answerBtns">
           {currentQuestion.options.map((option, optionIndex) => (
