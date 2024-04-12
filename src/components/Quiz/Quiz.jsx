@@ -1,13 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./quiz.scss";
-import asEconomicsQuestions from "../data/asEconomicsQuestions.json";
+import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
 
 const Quiz = () => {
+  const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
 
   const currentQuestion = asEconomicsQuestions[currentQuestionIndex];
+
+  useEffect(() => {
+    if (currentQuestionIndex > asEconomicsQuestions) {
+    }
+  });
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
@@ -31,7 +38,7 @@ const Quiz = () => {
       if (currentQuestionIndex + 1 < asEconomicsQuestions.length) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        // Handle end of quiz
+        navigate("/results");
       }
     }
   };
