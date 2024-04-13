@@ -6,7 +6,7 @@ import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { motion } from "framer-motion";
 
 import { ProgressBar } from "primereact/progressbar";
-import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
+import "primereact/resources/themes/lara-light-teal/theme.css";
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ const Quiz = () => {
       <div className="header">
         <h1>AQA AS Economics MCQs</h1>
         <div className="p-progressbar">
-          <ProgressBar value={percentageComplete} />
+          <ProgressBar value={percentageComplete} displayValue={false} />
         </div>
         <div className="questionInfo">
           <p>

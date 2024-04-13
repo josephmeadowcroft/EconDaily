@@ -21,8 +21,10 @@ $button-text-color: #000;
     }
 
     .p-progressbar {
-      width: 500px;
+      width: 70vh;
       height: 20px;
+      border-radius: 5px;
+      font-size: 0px;
     }
   }
 
