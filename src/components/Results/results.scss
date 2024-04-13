@@ -1,23 +1,31 @@
 .results {
   height: 100vh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 50px;
-  color: white;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin: auto;
+  }
 
   p {
     font-size: 48px;
   }
 
   .resultsArea {
+    width: 85%;
+    margin: auto;
+    height: calc(97.5vh - 100px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 25px;
+    justify-content: center;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    color: black;
   }
 
   .scoreBarWrapper {

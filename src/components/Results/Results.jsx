@@ -8,6 +8,8 @@ const Results = () => {
   const { state } = useLocation();
   const correct = state?.correct;
   const attempted = state?.attempted;
+  const minutes = state?.minutes;
+  const seconds = state?.seconds;
 
   const percentageCorrect = Math.round((correct / attempted) * 100);
 
@@ -21,10 +23,18 @@ const Results = () => {
         transition: { duration: 1 },
       }}
     >
-      <h1>Results</h1>
+      <div className="header">
+        <h1>Results</h1>
+      </div>
       <div className="resultsArea">
         <p>
           Score: {correct}/{attempted}
+        </p>
+        <p>
+          Timer:{" "}
+          {`${minutes < 10 ? "0" : ""}${minutes}:${
+            seconds < 10 ? "0" : ""
+          }${seconds}`}
         </p>
         <div className="scoreBarWrapper">
           <div
@@ -34,14 +44,14 @@ const Results = () => {
             <p>{percentageCorrect > 0 ? `${percentageCorrect}%` : ""}</p>
           </div>
         </div>
+        <motion.button
+          onClick={() => navigate("/quiz")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Try again
+        </motion.button>
       </div>
-      <motion.button
-        onClick={() => navigate("/quiz")}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Try again
-      </motion.button>
     </motion.div>
   );
 };

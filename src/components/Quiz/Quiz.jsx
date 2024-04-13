@@ -34,7 +34,7 @@ const Quiz = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswerSelected(false);
     } else {
-      navigate("/results", { state: { correct, attempted } });
+      navigate("/results", { state: { correct, attempted, minutes, seconds } });
     }
   };
 
