@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 const Quiz = () => {
   const navigate = useNavigate();
+  const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
@@ -48,6 +49,28 @@ const Quiz = () => {
   }, []);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
+
+  // Shuffler
+  useEffect(() => {
+    const shuffledQuestions = shuffleArray(asEconomicsQuestionsP2);
+    setQuestions(shuffledQuestions);
+  }, []);
+  const shuffleArray = (array) => {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  };
 
   return (
     <div className="quiz">
