@@ -5,6 +5,9 @@ import "./quiz.scss";
 import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { motion } from "framer-motion";
 
+import { ProgressBar } from "primereact/progressbar";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
+
 const Quiz = () => {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
@@ -38,6 +41,10 @@ const Quiz = () => {
       navigate("/results", { state: { correct, attempted, minutes, seconds } });
     }
   };
+
+  const percentageComplete = Math.floor(
+    (attempted / asEconomicsQuestionsP2.length) * 100
+  );
 
   //Timer
   const [totalSeconds, setTotalSeconds] = useState(0);
@@ -76,6 +83,9 @@ const Quiz = () => {
     <div className="quiz">
       <div className="header">
         <h1>AQA AS Economics MCQs</h1>
+        <div className="p-progressbar">
+          <ProgressBar value={percentageComplete} />
+        </div>
         <div className="questionInfo">
           <p>
             Timer:{" "}

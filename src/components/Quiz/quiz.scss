@@ -19,6 +19,11 @@ $button-text-color: #000;
       display: flex;
       gap: 30px;
     }
+
+    .p-progressbar {
+      width: 500px;
+      height: 20px;
+    }
   }
 
   .questionArea {

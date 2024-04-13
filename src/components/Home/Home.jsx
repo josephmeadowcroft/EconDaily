@@ -7,6 +7,7 @@ const Home = () => {
       <div className="header">
         <h1>Exam Question Generator</h1>
       </div>
+
     </div>
   );
 };
