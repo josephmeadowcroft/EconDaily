@@ -127,7 +127,7 @@ const Quiz = () => {
                 name={`question${currentQuestion.question}`}
                 onClick={handleQuestionAnswered}
                 value={option}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: answerSelected ? 1 : 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 disabled={answerSelected}
               >
@@ -135,13 +135,15 @@ const Quiz = () => {
               </motion.button>
             </label>
           ))}
-          <button
+          <motion.button
             id="nextQuestionBtn"
             hidden={!answerSelected}
             onClick={handleNextQuestion}
+            whileHover={{ scale: !answerSelected ? 1 : 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             Next
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>
