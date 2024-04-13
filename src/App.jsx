@@ -1,4 +1,5 @@
 import "./app.scss";
+import Home from "./components/Home/Home";
 import Quiz from "./components/Quiz/Quiz";
 import Results from "./components/Results/Results";
 import {
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="/quiz" />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/results" element={<Results />} />
         </Routes>
