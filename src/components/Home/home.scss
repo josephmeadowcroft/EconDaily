@@ -46,6 +46,9 @@
     
       .optionBtns {
         display: flex;
+        flex-wrap: wrap;
+        gap: 10px ;
+        width: 80%;
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -57,7 +60,7 @@
           background-color: #08b4d4;
           border: 1px solid rgb(75, 75, 75);
           border-radius: 10px;
-          margin: auto 10px;
+          font-weight: 700;
         }
       }
     }

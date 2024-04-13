@@ -41,7 +41,17 @@ const Home = () => {
       </div>
       <div className="quizSelectionForm">
         {currentQuestionIndex < questions.length && (
-          <div className="question">
+          <motion.div
+            className="question"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                duration: 1,
+              },
+            }}
+          >
             <h2>{questions[currentQuestionIndex].question}</h2>
             <div className="optionBtns">
               {questions[currentQuestionIndex].options.map((option, index) => (
@@ -57,7 +67,7 @@ const Home = () => {
                 </motion.button>
               ))}
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
