@@ -3,6 +3,13 @@ import "./home.scss";
 import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+} from "@chakra-ui/react";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -93,6 +100,19 @@ const Home = () => {
               <h2>{questions[currentQuestionIndex].question}</h2>
               <div className="questionInputs">
                 <h3>{questionsValue}</h3>
+                <Slider
+                  aria-label="slider-ex-1"
+                  defaultValue={20}
+                  className="slider"
+                  min={1}
+                  max={maxValue}
+                  onChangeEnd={(val) => setQuestionsValue(val)}
+                >
+                  <SliderTrack>
+                    <SliderFilledTrack />
+                  </SliderTrack>
+                  <SliderThumb />
+                </Slider>
               </div>
             </motion.div>
           )}

@@ -1,4 +1,3 @@
-import "./app.scss";
 import Home from "./components/Home/Home";
 import Quiz from "./components/Quiz/Quiz";
 import Results from "./components/Results/Results";
@@ -9,13 +8,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
-import { NextUIProvider } from "@nextui-org/react";
+import { ChakraProvider } from "@chakra-ui/react";
+import "./app.scss";
 
 function App() {
   return (
     <>
       <PrimeReactProvider>
-        <NextUIProvider>
+        <ChakraProvider resetCSS={false} disableGlobalStyle={true}>
           <Router>
             <Routes>
               <Route path="/" element={<Navigate to="/quiz" />} />
@@ -24,7 +24,7 @@ function App() {
               <Route path="/results" element={<Results />} />
             </Routes>
           </Router>
-        </NextUIProvider>
+        </ChakraProvider>
       </PrimeReactProvider>
     </>
   );
