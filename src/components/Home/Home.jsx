@@ -1,10 +1,15 @@
 import React from "react";
 import "./home.scss";
+import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Slider } from "primereact/slider";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [questionsValue, setQuestionsValue] = useState(20);
+
+  const maxValue = asEconomicsQuestionsP2.length;
 
   const questions = [
     {
@@ -21,6 +26,9 @@ const Home = () => {
     {
       question: "Choose your exam board:",
       options: ["AQA", "Edexcel", "OCR", "Other"],
+    },
+    {
+      question: "How many exam questions would you like to answer?",
     },
   ];
 
@@ -40,7 +48,7 @@ const Home = () => {
         </div>
       </div>
       <div className="quizSelectionForm">
-        {currentQuestionIndex < questions.length && (
+        {currentQuestionIndex < 2 && (
           <motion.div
             className="question"
             initial={{ opacity: 0, x: -100 }}
@@ -62,6 +70,7 @@ const Home = () => {
                   label={option}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
+                  value={option}
                 >
                   {option}
                 </motion.button>
@@ -69,6 +78,33 @@ const Home = () => {
             </div>
           </motion.div>
         )}
+        {currentQuestionIndex < questions.length &&
+          currentQuestionIndex >= 2 && (
+            <motion.div
+              className="question"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 1,
+                },
+              }}
+            >
+              <h2>{questions[currentQuestionIndex].question}</h2>
+              <div className="questionInputs">
+                <h3>{questionsValue}</h3>
+                <div className="p-slider">
+                  <Slider
+                    value={questionsValue}
+                    onChange={(e) => setQuestionsValue(e.value)}
+                    max={maxValue}
+                    className="p-slider-handle"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
       </div>
     </div>
   );
