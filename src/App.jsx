@@ -9,19 +9,22 @@ import {
   Navigate,
 } from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
+import { NextUIProvider } from "@nextui-org/react";
 
 function App() {
   return (
     <>
       <PrimeReactProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Navigate to="/quiz" />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/results" element={<Results />} />
-          </Routes>
-        </Router>
+        <NextUIProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Navigate to="/quiz" />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/results" element={<Results />} />
+            </Routes>
+          </Router>
+        </NextUIProvider>
       </PrimeReactProvider>
     </>
   );
