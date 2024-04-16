@@ -38,7 +38,6 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      margin-bottom: 35px;
 
       h2 {
         font-size: 56px;
@@ -67,14 +66,18 @@
 
       .questionInputs{
         display: flex;
-        gap: 10px;
+        gap: 20px;
         width: 80%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        .slider {
-          width: 200px;
+        .sliderContainer {
+          margin: 20px;
+
+          .slider {
+            width: 200px;
+          }
         }
   
         .startBtn {

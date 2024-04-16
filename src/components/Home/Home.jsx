@@ -46,7 +46,7 @@ const Home = () => {
   };
 
   const handleSubmit = () => {
-    navigate("/quiz");
+    navigate("/quiz", { state: { questionsValue } });
   };
 
   return (
@@ -105,20 +105,22 @@ const Home = () => {
             >
               <h2>{questions[currentQuestionIndex].question}</h2>
               <div className="questionInputs">
-                <h3>{questionsValue}</h3>
-                <Slider
-                  aria-label="slider-ex-1"
-                  defaultValue={20}
-                  className="slider"
-                  min={1}
-                  max={maxValue}
-                  onChange={(val) => setQuestionsValue(val)}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
+                <div className="sliderContainer">
+                  <h3>{questionsValue}</h3>
+                  <Slider
+                    aria-label="slider-ex-1"
+                    defaultValue={20}
+                    className="slider"
+                    min={1}
+                    max={maxValue}
+                    onChange={(val) => setQuestionsValue(val)}
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb />
+                  </Slider>
+                </div>
                 <motion.button
                   className="startBtn"
                   onClick={() => handleSubmit()}

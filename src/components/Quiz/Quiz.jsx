@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./quiz.scss";
 import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { motion } from "framer-motion";
@@ -10,6 +10,8 @@ import "primereact/resources/themes/lara-light-teal/theme.css";
 
 const Quiz = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const questionsValue = state?.questionsValue;
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
@@ -34,7 +36,7 @@ const Quiz = () => {
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex + 1 < asEconomicsQuestionsP2.length) {
+    if (currentQuestionIndex + 1 < questionsValue) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswerSelected(false);
     } else {
@@ -42,9 +44,7 @@ const Quiz = () => {
     }
   };
 
-  const percentageComplete = Math.floor(
-    (attempted / asEconomicsQuestionsP2.length) * 100
-  );
+  const percentageComplete = Math.floor((attempted / questionsValue) * 100);
 
   //Timer
   const [totalSeconds, setTotalSeconds] = useState(0);
@@ -94,7 +94,7 @@ const Quiz = () => {
             }${seconds}`}
           </p>
           <p>
-            Answered: {attempted}/{asEconomicsQuestionsP2.length}
+            Answered: {attempted}/{questionsValue}
           </p>
         </div>
       </div>
