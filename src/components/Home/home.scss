@@ -65,8 +65,27 @@
         }
       }
 
-      .slider {
-        width: 200px;
+      .questionInputs{
+        display: flex;
+        gap: 10px;
+        width: 80%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .slider {
+          width: 200px;
+        }
+  
+        .startBtn {
+          padding: 20px;
+          font-size: 20px;
+          background-color: #08b4d4;
+          border: 1px solid rgb(75, 75, 75);
+          border-radius: 10px;
+          font-weight: 700;
+          cursor: pointer;
+        }
       }
     }
   }

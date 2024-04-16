@@ -2,17 +2,20 @@ import React from "react";
 import "./home.scss";
 import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  SliderMark,
 } from "@chakra-ui/react";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [subject, setSubject] = useState("");
+  const [examBoard, setExamBoard] = useState("");
   const [questionsValue, setQuestionsValue] = useState(20);
 
   const maxValue = asEconomicsQuestionsP2.length;
@@ -20,18 +23,11 @@ const Home = () => {
   const questions = [
     {
       question: "What subject would you like to study?",
-      options: [
-        "Maths",
-        "Chemistry",
-        "Biology",
-        "Physics",
-        "Economics",
-        "Psychology",
-      ],
+      options: ["Economics"],
     },
     {
       question: "Choose your exam board:",
-      options: ["AQA", "Edexcel", "OCR", "Other"],
+      options: ["AQA"],
     },
     {
       question: "How many exam questions would you like to answer?",
@@ -39,7 +35,18 @@ const Home = () => {
   ];
 
   const handleOptionClick = (option) => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setCurrentQuestionIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        setSubject(option);
+      } else {
+        setExamBoard(option);
+      }
+      return prevIndex + 1;
+    });
+  };
+
+  const handleSubmit = () => {
+    navigate("/quiz");
   };
 
   return (
@@ -73,7 +80,6 @@ const Home = () => {
                   key={index}
                   className="optionBtn"
                   onClick={() => handleOptionClick(option)}
-                  label={option}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   value={option}
@@ -106,13 +112,21 @@ const Home = () => {
                   className="slider"
                   min={1}
                   max={maxValue}
-                  onChangeEnd={(val) => setQuestionsValue(val)}
+                  onChange={(val) => setQuestionsValue(val)}
                 >
                   <SliderTrack>
                     <SliderFilledTrack />
                   </SliderTrack>
                   <SliderThumb />
                 </Slider>
+                <motion.button
+                  className="startBtn"
+                  onClick={() => handleSubmit()}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  Start
+                </motion.button>
               </div>
             </motion.div>
           )}
