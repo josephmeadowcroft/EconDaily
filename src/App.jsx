@@ -18,7 +18,7 @@ function App() {
         <ChakraProvider resetCSS={false} disableGlobalStyle={true}>
           <Router>
             <Routes>
-              <Route path="/" element={<Navigate to="/quiz" />} />
+              <Route path="/" element={<Navigate to="/home" />} />
               <Route path="/home" element={<Home />} />
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/results" element={<Results />} />

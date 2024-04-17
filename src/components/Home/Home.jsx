@@ -10,6 +10,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
 } from "@chakra-ui/react";
+import { Checkbox } from "@chakra-ui/react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const Home = () => {
   const [subject, setSubject] = useState("");
   const [examBoard, setExamBoard] = useState("");
   const [questionsValue, setQuestionsValue] = useState(20);
+  const [checkboxValues, setCheckboxValues] = useState({
+    paper1: true,
+    paper2: true,
+  });
 
   const maxValue = asEconomicsQuestionsP2.length;
 
@@ -30,7 +35,7 @@ const Home = () => {
       options: ["AQA"],
     },
     {
-      question: "How many exam questions would you like to answer?",
+      question: "Settings",
     },
   ];
 
@@ -45,8 +50,16 @@ const Home = () => {
     });
   };
 
+  const handleCheckbox = (event) => {
+    const { name, checked } = event.target;
+    setCheckboxValues({
+      ...checkboxValues,
+      [name]: checked,
+    });
+  };
+
   const handleSubmit = () => {
-    navigate("/quiz", { state: { questionsValue } });
+    navigate("/quiz", { state: { questionsValue, checkboxValues } });
   };
 
   return (
@@ -106,9 +119,9 @@ const Home = () => {
               <h2>{questions[currentQuestionIndex].question}</h2>
               <div className="questionInputs">
                 <div className="sliderContainer">
+                  <p>Questions:</p>
                   <h3>{questionsValue}</h3>
                   <Slider
-                    aria-label="slider-ex-1"
                     defaultValue={20}
                     className="slider"
                     min={1}
@@ -120,6 +133,25 @@ const Home = () => {
                     </SliderTrack>
                     <SliderThumb />
                   </Slider>
+                </div>
+                <div className="paperContainer">
+                  <p>From:</p>
+                  <Checkbox
+                    className="checkbox"
+                    size="lg"
+                    defaultChecked
+                    onChange={handleCheckbox}
+                  >
+                    Paper 1
+                  </Checkbox>
+                  <Checkbox
+                    className="checkbox"
+                    size="lg"
+                    defaultChecked
+                    onChange={handleCheckbox}
+                  >
+                    Paper 2
+                  </Checkbox>
                 </div>
                 <motion.button
                   className="startBtn"
