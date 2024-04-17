@@ -11,8 +11,11 @@ import "primereact/resources/themes/lara-light-teal/theme.css";
 const Quiz = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+
   const questionsValue = state?.questionsValue;
+  const checkboxValues = state?.checkboxValues;
   const [questions, setQuestions] = useState([]);
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
@@ -20,7 +23,11 @@ const Quiz = () => {
   const [answer, setAnswer] = useState("");
   const [attempted, setAttempted] = useState(0);
 
-  const currentQuestion = asEconomicsQuestionsP2[currentQuestionIndex];
+  useEffect(() => {
+    
+  }, [])
+
+  const currentQuestion = asEconomicsQuestionsP2[currentQuestionIndex]; // change to questions
 
   const handleQuestionAnswered = ({ target }) => {
     setAnswerSelected(true);
@@ -59,7 +66,7 @@ const Quiz = () => {
 
   // Shuffler
   useEffect(() => {
-    const shuffledQuestions = shuffleArray(asEconomicsQuestionsP2);
+    const shuffledQuestions = shuffleArray(asEconomicsQuestionsP2); // change to questions
     setQuestions(shuffledQuestions);
   }, []);
   const shuffleArray = (array) => {

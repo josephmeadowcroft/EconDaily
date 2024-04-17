@@ -19,8 +19,8 @@ const Home = () => {
   const [examBoard, setExamBoard] = useState("");
   const [questionsValue, setQuestionsValue] = useState(20);
   const [checkboxValues, setCheckboxValues] = useState({
-    paper1: true,
-    paper2: true,
+    paper1: false,
+    paper2: false,
   });
 
   const maxValue = asEconomicsQuestionsP2.length;
@@ -139,7 +139,6 @@ const Home = () => {
                   <Checkbox
                     className="checkbox"
                     size="lg"
-                    defaultChecked
                     onChange={handleCheckbox}
                   >
                     Paper 1
@@ -147,7 +146,6 @@ const Home = () => {
                   <Checkbox
                     className="checkbox"
                     size="lg"
-                    defaultChecked
                     onChange={handleCheckbox}
                   >
                     Paper 2
