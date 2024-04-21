@@ -23,10 +23,6 @@ const Home = () => {
     paper2: false,
   });
 
-  useEffect(() => {
-    localStorage.setItem("questionsValue", questionsValue);
-  }, [questionsValue]);
-
   const maxValue = asEconomicsQuestionsP2.length;
 
   const questions = [
@@ -65,6 +61,14 @@ const Home = () => {
   const handleSubmit = () => {
     navigate("/quiz", { state: { questionsValue, checkboxValues } });
   };
+
+  useEffect(() => {
+    localStorage.setItem("questionsValue", questionsValue);
+  }, [questionsValue]);
+
+  useEffect(() => {
+    localStorage.setItem("checkboxValues", checkboxValues);
+  }, [checkboxValues]);
 
   return (
     <div className="home">
@@ -142,6 +146,7 @@ const Home = () => {
                   <p>From:</p>
                   <Checkbox
                     className="checkbox"
+                    name="paper1"
                     size="lg"
                     onChange={handleCheckbox}
                   >
@@ -149,6 +154,7 @@ const Home = () => {
                   </Checkbox>
                   <Checkbox
                     className="checkbox"
+                    name="paper2"
                     size="lg"
                     onChange={handleCheckbox}
                   >
