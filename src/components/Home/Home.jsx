@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./home.scss";
 import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
 import { useState } from "react";
@@ -22,6 +22,10 @@ const Home = () => {
     paper1: false,
     paper2: false,
   });
+
+  useEffect(() => {
+    localStorage.setItem("questionsValue", questionsValue);
+  }, [questionsValue]);
 
   const maxValue = asEconomicsQuestionsP2.length;
 

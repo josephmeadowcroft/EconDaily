@@ -10,10 +10,8 @@ import "primereact/resources/themes/lara-light-teal/theme.css";
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
 
-  const questionsValue = state?.questionsValue;
-  const checkboxValues = state?.checkboxValues;
+  const questionsValue = localStorage.getItem("questionsValue");
   const [questions, setQuestions] = useState([]);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -22,10 +20,6 @@ const Quiz = () => {
   const [answerSelected, setAnswerSelected] = useState(false);
   const [answer, setAnswer] = useState("");
   const [attempted, setAttempted] = useState(0);
-
-  useEffect(() => {
-    
-  }, [])
 
   const currentQuestion = asEconomicsQuestionsP2[currentQuestionIndex]; // change to questions
 
@@ -106,18 +100,20 @@ const Quiz = () => {
         </div>
       </div>
       <div className="questionArea">
-        <img
-          src={currentQuestion.image}
-          alt={`Question ${currentQuestion.question}`}
-          draggable={false}
-          style={{
-            border: `${
-              answerSelected && answer === currentQuestion.correctOption
-                ? `3px solid rgb(0, 255, 0)`
-                : `none`
-            }`,
-          }}
-        />
+        <div className="imgContainer">
+          <img
+            src={currentQuestion.image}
+            alt={`Question ${currentQuestion.question}`}
+            draggable={false}
+            style={{
+              border: `${
+                answerSelected && answer === currentQuestion.correctOption
+                  ? `3px solid rgb(0, 255, 0)`
+                  : `none`
+              }`,
+            }}
+          />
+        </div>
         <div className="answerBtns">
           {currentQuestion.options.map((option, optionIndex) => (
             <label key={optionIndex}>
