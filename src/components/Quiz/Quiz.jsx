@@ -11,12 +11,12 @@ import "primereact/resources/themes/lara-light-teal/theme.css";
 const Quiz = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const checkboxValues = state?.checkboxValues;
 
   let questionsValue = localStorage.getItem("questionsValue");
   if (questionsValue === null || questionsValue === undefined) {
     questionsValue = 20;
   }
-  
 
   const [questions, setQuestions] = useState([]);
 

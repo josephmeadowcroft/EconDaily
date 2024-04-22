@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./home.scss";
 import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
-import { useState } from "react";
+import { useState, useLocation } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -59,7 +59,7 @@ const Home = () => {
   };
 
   const handleSubmit = () => {
-    navigate("/quiz", { state: { questionsValue, checkboxValues } });
+    navigate("/quiz", { state: { checkboxValues } });
   };
 
   useEffect(() => {
