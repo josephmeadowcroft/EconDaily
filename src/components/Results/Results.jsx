@@ -1,7 +1,7 @@
 import React from "react";
 import "./results.scss";
 import { useNavigate, useLocation } from "react-router-dom";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Results = () => {
   const navigate = useNavigate();

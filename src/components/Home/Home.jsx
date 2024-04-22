@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./home.scss";
-import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
+import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
 import { useState, useLocation } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -24,7 +24,7 @@ const Home = () => {
   });
   const [checkboxError, setCheckboxError] = useState(false);
 
-  const maxValue = asEconomicsQuestionsP2.length;
+  const maxValue = asEconomicsQuestions.length;
 
   const questions = [
     {

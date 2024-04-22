@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./quiz.scss";
-import asEconomicsQuestionsP2 from "../../data/asEconomicsQuestionsP2.json";
+import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
 import { motion } from "framer-motion";
 
 import { ProgressBar } from "primereact/progressbar";
@@ -27,7 +27,7 @@ const Quiz = () => {
   const [answer, setAnswer] = useState("");
   const [attempted, setAttempted] = useState(0);
 
-  const currentQuestion = asEconomicsQuestionsP2[currentQuestionIndex]; // change to questions
+  const currentQuestion = asEconomicsQuestions[currentQuestionIndex]; // change to questions
 
   const handleQuestionAnswered = ({ target }) => {
     setAnswerSelected(true);
@@ -66,7 +66,7 @@ const Quiz = () => {
 
   // Shuffler
   useEffect(() => {
-    const shuffledQuestions = shuffleArray(asEconomicsQuestionsP2); // change to questions
+    const shuffledQuestions = shuffleArray(asEconomicsQuestions); // change to questions
     setQuestions(shuffledQuestions);
   }, []);
   const shuffleArray = (array) => {
