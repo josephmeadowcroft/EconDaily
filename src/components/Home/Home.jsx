@@ -22,6 +22,7 @@ const Home = () => {
     paper1: false,
     paper2: false,
   });
+  const [checkboxError, setCheckboxError] = useState(false);
 
   const maxValue = asEconomicsQuestionsP2.length;
 
@@ -59,7 +60,11 @@ const Home = () => {
   };
 
   const handleSubmit = () => {
-    navigate("/quiz", { state: { checkboxValues } });
+    if (checkboxValues.paper1 || checkboxValues.paper2) {
+      navigate("/quiz", { state: { checkboxValues } });
+    } else {
+      setCheckboxError(true);
+    }
   };
 
   useEffect(() => {
@@ -161,6 +166,9 @@ const Home = () => {
                     Paper 2
                   </Checkbox>
                 </div>
+                <p className="checkboxError" hidden={!checkboxError}>
+                  Please select at least one paper.
+                </p>
                 <motion.button
                   className="startBtn"
                   onClick={() => handleSubmit()}
