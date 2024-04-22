@@ -104,6 +104,11 @@
           font-weight: 700;
           cursor: pointer;
         }
+
+        .checkboxError {
+          color: rgb(255, 99, 99);
+          font-size: 16px;
+        }
       }
     }
   }
