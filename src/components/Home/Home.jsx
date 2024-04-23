@@ -14,14 +14,14 @@ import { Checkbox } from "@chakra-ui/react";
 const Home = () => {
   const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [subject, setSubject] = useState("");
-  const [examBoard, setExamBoard] = useState("");
+
   const [questionsValue, setQuestionsValue] = useState(20);
   const [checkboxValues, setCheckboxValues] = useState({
     paper1: false,
     paper2: false,
   });
   const [checkboxError, setCheckboxError] = useState(false);
+  const [sliderError, setSliderError] = useState(false);
   const [maxValue, setMaxValue] = useState(20);
 
   // Max questions setter
@@ -60,14 +60,7 @@ const Home = () => {
   ];
 
   const handleOptionClick = (option) => {
-    setCurrentQuestionIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        setSubject(option);
-      } else {
-        setExamBoard(option);
-      }
-      return prevIndex + 1;
-    });
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const handleCheckbox = (event) => {
@@ -80,7 +73,11 @@ const Home = () => {
 
   const handleSubmit = () => {
     if (checkboxValues.paper1 || checkboxValues.paper2) {
-      navigate("/quiz", { state: { checkboxValues } });
+      if (questionsValue <= maxValue) {
+        navigate("/quiz", { state: { checkboxValues } });
+      } else {
+        setSliderError(true);
+      }
     } else {
       setCheckboxError(true);
     }
@@ -89,10 +86,6 @@ const Home = () => {
   useEffect(() => {
     localStorage.setItem("questionsValue", questionsValue);
   }, [questionsValue]);
-
-  useEffect(() => {
-    localStorage.setItem("checkboxValues", checkboxValues);
-  }, [checkboxValues]);
 
   return (
     <div className="home">
@@ -187,6 +180,9 @@ const Home = () => {
                 </div>
                 <p className="checkboxError" hidden={!checkboxError}>
                   Please select at least one paper.
+                </p>
+                <p className="sliderError" hidden={!sliderError}>
+                  Please adjust the number of questions.
                 </p>
                 <motion.button
                   className="startBtn"
