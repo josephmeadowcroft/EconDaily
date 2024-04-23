@@ -19,15 +19,12 @@ const Quiz = () => {
   }
 
   const [questions, setQuestions] = useState([]);
-
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
   const [answerSelected, setAnswerSelected] = useState(false);
   const [answer, setAnswer] = useState("");
   const [attempted, setAttempted] = useState(0);
-
-  const currentQuestion = asEconomicsQuestions[currentQuestionIndex]; // change to questions
 
   const handleQuestionAnswered = ({ target }) => {
     setAnswerSelected(true);
@@ -64,11 +61,30 @@ const Quiz = () => {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
 
-  // Shuffler
+  // Question set logic
   useEffect(() => {
-    const shuffledQuestions = shuffleArray(asEconomicsQuestions); // change to questions
+    let filteredQuestions;
+    console.log(asEconomicsQuestions);
+    if (checkboxValues.paper1 && !checkboxValues.paper2) {
+      filteredQuestions = asEconomicsQuestions.filter(
+        (question) => question.paper === 1
+      );
+      console.log(filteredQuestions);
+    } else if (!checkboxValues.paper1 && checkboxValues.paper2) {
+      filteredQuestions = asEconomicsQuestions.filter(
+        (question) => question.paper === 2
+      );
+      console.log(filteredQuestions);
+    } else {
+      filteredQuestions = asEconomicsQuestions;
+      console.log(filteredQuestions);
+    }
+    const shuffledQuestions = shuffleArray(filteredQuestions);
     setQuestions(shuffledQuestions);
   }, []);
+  const currentQuestion = questions[currentQuestionIndex];
+
+  // Shuffler
   const shuffleArray = (array) => {
     let currentIndex = array.length,
       randomIndex;
@@ -108,12 +124,12 @@ const Quiz = () => {
       <div className="questionArea">
         <div className="imgContainer">
           <img
-            src={currentQuestion.image}
-            alt={`Question ${currentQuestion.question}`}
+            src={currentQuestion?.image}
+            alt={`Question ${currentQuestion?.question}`}
             draggable={false}
             style={{
               border: `${
-                answerSelected && answer === currentQuestion.correctOption
+                answerSelected && answer === currentQuestion?.correctOption
                   ? `3px solid rgb(0, 255, 0)`
                   : `none`
               }`,
@@ -121,11 +137,11 @@ const Quiz = () => {
           />
         </div>
         <div className="answerBtns">
-          {currentQuestion.options.map((option, optionIndex) => (
+          {currentQuestion?.options.map((option, optionIndex) => (
             <label key={optionIndex}>
               <motion.button
                 className={`${
-                  option === currentQuestion.correctOption
+                  option === currentQuestion?.correctOption
                     ? "correctAnswerBtn"
                     : "incorrectAnswerBtns"
                 } ${answerSelected ? "answered" : ""} ${
@@ -133,7 +149,7 @@ const Quiz = () => {
                     ? "correctAnswerSelected"
                     : "incorrectAnswerSelected"
                 }`}
-                name={`question${currentQuestion.question}`}
+                name={`question${currentQuestion?.question}`}
                 onClick={handleQuestionAnswered}
                 value={option}
                 whileHover={{ scale: answerSelected ? 1 : 1.1 }}
