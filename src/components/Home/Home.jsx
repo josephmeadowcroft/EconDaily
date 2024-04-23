@@ -23,8 +23,30 @@ const Home = () => {
     paper2: false,
   });
   const [checkboxError, setCheckboxError] = useState(false);
+  const [maxValue, setMaxValue] = useState(20);
 
-  const maxValue = asEconomicsQuestions.length;
+  useEffect(() => {
+    // Initialize a counter variable
+    let p1Count = 0;
+    let p2Count = 0;
+
+    for (const obj of asEconomicsQuestions) {
+      if (obj.paper === 1) {
+        p1Count++;
+      }
+      if (obj.paper === 2) {
+        p2Count++;
+      }
+    }
+
+    if (checkboxValues.paper1 && !checkboxValues.paper2) {
+      setMaxValue(p1Count);
+    } else if (!checkboxValues.paper1 && checkboxValues.paper2) {
+      setMaxValue(p2Count);
+    } else if (checkboxValues.paper1 && checkboxValues.paper2) {
+      setMaxValue(asEconomicsQuestions.length);
+    }
+  }, [checkboxValues]);
 
   const questions = [
     {
