@@ -25,11 +25,10 @@ const Home = () => {
   const [checkboxError, setCheckboxError] = useState(false);
   const [maxValue, setMaxValue] = useState(20);
 
+  // Max questions setter
   useEffect(() => {
-    // Initialize a counter variable
     let p1Count = 0;
     let p2Count = 0;
-
     for (const obj of asEconomicsQuestions) {
       if (obj.paper === 1) {
         p1Count++;
@@ -38,7 +37,6 @@ const Home = () => {
         p2Count++;
       }
     }
-
     if (checkboxValues.paper1 && !checkboxValues.paper2) {
       setMaxValue(p1Count);
     } else if (!checkboxValues.paper1 && checkboxValues.paper2) {
@@ -136,6 +134,7 @@ const Home = () => {
                 </motion.button>
               ))}
             </div>
+            
           </motion.div>
         )}
         {currentQuestionIndex < questions.length &&

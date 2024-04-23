@@ -65,12 +65,12 @@ const Quiz = () => {
   useEffect(() => {
     let filteredQuestions;
     console.log(asEconomicsQuestions);
-    if (checkboxValues.paper1 && !checkboxValues.paper2) {
+    if (checkboxValues?.paper1 && !checkboxValues?.paper2) {
       filteredQuestions = asEconomicsQuestions.filter(
         (question) => question.paper === 1
       );
       console.log(filteredQuestions);
-    } else if (!checkboxValues.paper1 && checkboxValues.paper2) {
+    } else if (!checkboxValues?.paper1 && checkboxValues?.paper2) {
       filteredQuestions = asEconomicsQuestions.filter(
         (question) => question.paper === 2
       );
