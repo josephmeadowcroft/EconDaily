@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./home.scss";
 import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
-import { useState, useLocation } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -134,7 +133,6 @@ const Home = () => {
                 </motion.button>
               ))}
             </div>
-            
           </motion.div>
         )}
         {currentQuestionIndex < questions.length &&
@@ -157,13 +155,13 @@ const Home = () => {
                   <h3>{questionsValue}</h3>
                   <Slider
                     defaultValue={20}
-                    className="slider"
+                    w="200px"
                     min={1}
                     max={maxValue}
                     onChange={(val) => setQuestionsValue(val)}
                   >
                     <SliderTrack>
-                      <SliderFilledTrack />
+                      <SliderFilledTrack bgGradient="linear(to-l, #7928CA, #FF0080)" />
                     </SliderTrack>
                     <SliderThumb />
                   </Slider>
