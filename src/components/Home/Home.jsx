@@ -99,6 +99,7 @@ const Home = () => {
         </div>
       </div>
       <div className="quizSelectionForm">
+        {/* Subject + Exam board */}
         {currentQuestionIndex < 2 && (
           <motion.div
             className="question"
@@ -119,7 +120,7 @@ const Home = () => {
                   className="optionBtn"
                   onClick={() => handleOptionClick(option)}
                   whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 1, opacity: 0.8 }}
                   value={option}
                 >
                   {option}
@@ -128,6 +129,7 @@ const Home = () => {
             </div>
           </motion.div>
         )}
+        {/* Settings */}
         {currentQuestionIndex < questions.length &&
           currentQuestionIndex >= 2 && (
             <motion.div
@@ -188,7 +190,7 @@ const Home = () => {
                   className="startBtn"
                   onClick={() => handleSubmit()}
                   whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 1 }}
                 >
                   Start
                 </motion.button>
