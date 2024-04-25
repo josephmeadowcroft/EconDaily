@@ -156,7 +156,7 @@ const Home = () => {
                     onChange={(val) => setQuestionsValue(val)}
                   >
                     <SliderTrack>
-                      <SliderFilledTrack bgGradient="linear(to-l, #7928CA, #FF0080)" />
+                      <SliderFilledTrack bgGradient="linear-gradient(200deg, rgb(0, 229, 255) 0%, rgb(0, 123, 255) 100%);" />
                     </SliderTrack>
                     <SliderThumb />
                   </Slider>
