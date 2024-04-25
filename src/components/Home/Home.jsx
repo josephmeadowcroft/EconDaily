@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./home.scss";
 import asEconomicsQuestions from "../../data/asEconomicsQuestions.json";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Slider,
@@ -13,6 +13,8 @@ import { Checkbox } from "@chakra-ui/react";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const tryAgain = state?.tryAgain;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const [questionsValue, setQuestionsValue] = useState(20);
@@ -86,6 +88,9 @@ const Home = () => {
   useEffect(() => {
     localStorage.setItem("questionsValue", questionsValue);
   }, [questionsValue]);
+  useEffect(() => {
+    tryAgain ? setCurrentQuestionIndex(2) : "";
+  });
 
   return (
     <div className="home">

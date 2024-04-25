@@ -10,6 +10,7 @@ const Results = () => {
   const attempted = state?.attempted;
   const minutes = state?.minutes;
   const seconds = state?.seconds;
+  const tryAgain = true;
 
   const percentageCorrect = Math.round((correct / attempted) * 100);
 
@@ -45,7 +46,7 @@ const Results = () => {
           </div>
         </div>
         <motion.button
-          onClick={() => navigate("/quiz")}
+          onClick={() => navigate("/home", { state: { tryAgain } })}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
