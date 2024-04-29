@@ -498,5 +498,185 @@
     "image": "/images/Paper 1/asEcon-May2020-P1-Q20.png",
     "options": ["A", "B", "C", "D"],
     "correctOption": "A"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 1,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q1.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "B"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 2,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q2.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "B"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 3,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q3.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "A"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 4,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q4.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "C"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 5,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q5.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "D"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 6,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q6.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "D"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 7,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q7.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "D"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 8,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q8.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "C"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 9,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q9.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "C"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 10,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q10.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "C"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 11,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q11.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "B"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 12,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q12.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "B"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 13,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q13.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "A"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 14,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q14.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "B"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 15,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q15.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "A"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 16,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q16.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "A"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 17,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q17.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "D"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 18,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q18.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "A"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 19,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q19.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "B"
+  },
+  {
+    "year": 2020,
+    "month": "May",
+    "paper": 2,
+    "question": 20,
+    "image": "/images/Paper 1/asEcon-May2020-P2-Q20.png",
+    "options": ["A", "B", "C", "D"],
+    "correctOption": "D"
   }
 ]
