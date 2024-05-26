@@ -1,32 +1,23 @@
-import Home from "./components/Home/Home";
-import Quiz from "./components/Quiz/Quiz";
-import Results from "./components/Results/Results";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import { PrimeReactProvider } from "primereact/api";
-import { ChakraProvider } from "@chakra-ui/react";
-import "./app.scss";
+import { Login } from "./pages/Login";
+import { Home } from "./pages/Home";
+import { Navbar } from "./components/Navbar";
+import { UserProvider } from "./lib/context/user";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <PrimeReactProvider>
-        <ChakraProvider resetCSS={false} disableGlobalStyle={true}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Navigate to="/home" />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/quiz" element={<Quiz />} />
-              <Route path="/results" element={<Results />} />
-            </Routes>
-          </Router>
-        </ChakraProvider>
-      </PrimeReactProvider>
-    </>
+    <div>
+      <UserProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Login />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
+    </div>
   );
 }
 
