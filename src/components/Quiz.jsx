@@ -1,14 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useUser } from "../lib/context/user";
 import { Loading } from "./Loading";
-import { useDailyQuestions } from "./QuestionSetter";
+import { useDailyQuestions } from "../hooks/customHooks";
 
 export function Quiz() {
-  const navigate = useNavigate();
-  const user = useUser();
-  const { isLoading, completeQuestions } = useUser();
+  const { isLoading, completeQuestions, setStarted, setFinished } = useUser();
 
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -40,11 +37,12 @@ export function Quiz() {
     setAnswerSelected(false);
     setCurrentAnswer("");
     setInputError(false);
-    if (currentQuestionIndex + 1 < 3) {
+    if (currentQuestionIndex < 2) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       completeQuestions("280");
-      navigate("/results", { state: { correct, minutes, seconds } });
+      setStarted(false);
+      setFinished(true);
     }
   };
 
@@ -77,7 +75,7 @@ export function Quiz() {
           }`}
         >
           {/* Image Area */}
-          <div className="inline-flex md:flex-col h-[64vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
+          <div className="inline-flex md:flex-col h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
             <img
               className={`relative max-w-full max-h-[90vh] h-auto w-auto object-contain md:max-w-3xl lg:max-w-5xl rounded-lg ${
                 answerSelected && answer === currentQuestion?.correctAnswer
@@ -110,20 +108,28 @@ export function Quiz() {
                     <label
                       htmlFor={`option${option}`}
                       className={`inline-flex items-center justify-between w-full p-5 px-10 text-gray-500 bg-white border-2 border-gray-200 rounded-xl cursor-pointer 
-            peer-checked:border-lightBlue peer-checked:text-lightBlue hover:text-gray-600 hover:bg-gray-100
-            ${
-              answerSelected && option === currentQuestion.correctAnswer
-                ? "bg-green-300 border-green-500 text-green-500 peer-checked:border-green-500 peer-checked:text-green-500 peer-checked:bg-green-300"
-                : ""
-            }
-            ${
-              answerSelected &&
-              currentAnswer === option &&
-              currentAnswer !== currentQuestion.correctAnswer
-                ? "bg-red-300 border-red-500 text-red-500 peer-checked:border-red-500 peer-checked:text-red-500 peer-checked:bg-red-300"
-                : ""
-            }
-          `}
+    hover:text-gray-600 hover:bg-gray-100
+    ${
+      answerSelected && option === currentQuestion.correctAnswer
+        ? "bg-green-300 border-green-500 text-green-500"
+        : answerSelected &&
+          currentAnswer === option &&
+          currentAnswer !== currentQuestion.correctAnswer
+        ? "bg-red-300 border-red-500 text-red-500"
+        : "peer-checked:border-lightBlue peer-checked:text-lightBlue"
+    }
+    ${
+      answerSelected &&
+      option === currentQuestion.correctAnswer &&
+      "peer-checked:border-green-500 peer-checked:text-green-500 peer-checked:bg-green-300"
+    }
+    ${
+      answerSelected &&
+      currentAnswer === option &&
+      currentAnswer !== currentQuestion.correctAnswer &&
+      "peer-checked:border-red-500 peer-checked:text-red-500 peer-checked:bg-red-300"
+    }
+  `}
                     >
                       <div className="block">
                         <div className="w-full text-lg font-semibold">

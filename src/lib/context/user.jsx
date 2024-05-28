@@ -19,7 +19,9 @@ export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [dailyQuestions, setDailyQuestions] = useState([]);
   const [started, setStarted] = useState(false);
+  const [finished, setFinished] = useState(false);
 
+  // Login
   async function login(email, password) {
     setIsLoading(true);
     try {
@@ -35,6 +37,7 @@ export function UserProvider(props) {
     }
   }
 
+  // Logout
   async function logout() {
     setIsLoading(true);
     try {
@@ -52,6 +55,7 @@ export function UserProvider(props) {
     }
   }
 
+  // Register
   async function register(email, password) {
     setIsLoading(true);
     try {
@@ -64,6 +68,7 @@ export function UserProvider(props) {
     }
   }
 
+  // Fetch Email
   useEffect(() => {
     async function fetchUserEmail() {
       try {
@@ -77,6 +82,7 @@ export function UserProvider(props) {
     fetchUserEmail();
   }, []);
 
+  // XP Function
   async function completeQuestions(xp) {
     try {
       if (!userEmail) {
@@ -94,6 +100,7 @@ export function UserProvider(props) {
     }
   }
 
+  // Initial function
   async function init() {
     try {
       const loggedIn = await account.get();
@@ -121,6 +128,8 @@ export function UserProvider(props) {
         setDailyQuestions,
         started,
         setStarted,
+        finished,
+        setFinished,
         completeQuestions,
       }}
     >
