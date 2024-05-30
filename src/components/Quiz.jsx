@@ -75,14 +75,17 @@ export function Quiz() {
           }`}
         >
           {/* Image Area */}
-          <div className="inline-flex md:flex-col h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
+          <div className="inline-flex flex-col h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
+            <h3 className="md:text-black text-white pb-4 text-lg">{`Question ${
+              currentQuestionIndex + 1
+            }`}</h3>
             <img
               className={`relative max-w-full max-h-[90vh] h-auto w-auto object-contain md:max-w-3xl lg:max-w-5xl rounded-lg ${
                 answerSelected && answer === currentQuestion?.correctAnswer
                   ? "border-green-500 border-solid border-4 md:border-0"
                   : ""
               }`}
-              alt={`Question ${currentQuestion?.question}`}
+              alt={`Question ${currentQuestionIndex + 1}`}
               draggable={false}
               src={currentQuestion?.image}
             />
