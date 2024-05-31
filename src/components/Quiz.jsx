@@ -74,11 +74,13 @@ export function Quiz() {
               : ""
           }`}
         >
-          {/* Image Area */}
-          <div className="inline-flex flex-col h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
-            <h3 className="md:text-black text-white pb-4 text-lg">{`Question ${
+          <div className="flex flex-col justify-start">
+            <h3 className="md:text-black text-white pb-4 text-lg">{`Q${
               currentQuestionIndex + 1
             }`}</h3>
+          </div>
+          {/* Image Area */}
+          <div className="inline-flex flex-row h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
             <img
               className={`relative max-w-full max-h-[90vh] h-auto w-auto object-contain md:max-w-3xl lg:max-w-5xl rounded-lg ${
                 answerSelected && answer === currentQuestion?.correctAnswer
