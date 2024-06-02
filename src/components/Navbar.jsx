@@ -25,10 +25,10 @@ export function Navbar() {
               <path
                 d="M20 27L10.8137 18.3561C9.72878 17.3352 9.72878 15.6648 10.8137 14.6439L20 6"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </a>

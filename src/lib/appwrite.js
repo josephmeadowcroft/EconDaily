@@ -1,4 +1,4 @@
-import { Client, Databases, Account, Query } from "appwrite";
+import { Client, Databases, Account, Query, Avatars } from "appwrite";
 
 const client = new Client();
 const projectId = import.meta.env.VITE_PROJECT_ID;
@@ -8,6 +8,7 @@ client.setEndpoint("https://cloud.appwrite.io/v1").setProject(projectId);
 
 export const account = new Account(client);
 export const databases = new Databases(client);
+export const avatars = new Avatars(client);
 
 export async function getCurrentUserEmail() {
   try {
@@ -16,6 +17,15 @@ export async function getCurrentUserEmail() {
   } catch (error) {
     console.log("Error retrieving user:", error);
     throw error;
+  }
+}
+
+export async function getInitials() {
+  try {
+    const result = avatars.getInitials();
+    return result;
+  } catch (error) {
+    throw new Error("Error getting initials");
   }
 }
 

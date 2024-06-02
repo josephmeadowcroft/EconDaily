@@ -63,7 +63,7 @@ export function Quiz() {
   const seconds = totalSeconds % 60;
 
   return (
-    <div className="w-full h-[calc(100vh-6rem)] bg-primary absolute top-24 flex justify-center items-start md:items-center">
+    <div className="w-full h-[calc(100vh-5rem)] bg-primary absolute top-20 flex justify-center items-start md:items-center">
       {isLoading ? (
         <Loading />
       ) : (
