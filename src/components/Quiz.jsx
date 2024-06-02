@@ -63,26 +63,26 @@ export function Quiz() {
   const seconds = totalSeconds % 60;
 
   return (
-    <div className="w-full h-screen bg-primary absolute top-0 flex justify-center items-center">
+    <div className="w-full h-[calc(100vh-6rem)] bg-primary absolute top-24 flex justify-center items-start md:items-center">
       {isLoading ? (
         <Loading />
       ) : (
         <form
-          className={`inline-flex flex-col md:flex-row items-center md:justify-center px-2 md:px-6 py-4 relative md:bg-white rounded-3xl overflow-hidden ${
+          className={`inline-flex flex-col md:flex-row items-center md:justify-center px-2 md:px-6 md:py-4 relative md:bg-white rounded-3xl overflow-hidden ${
             answerSelected && answer === currentQuestion?.correctAnswer
               ? "md:border-green-500 md:border-solid md:border-4"
               : ""
           }`}
         >
-          <div className="flex flex-col justify-start">
+          {/* <div className="flex flex-col justify-start">
             <h3 className="md:text-black text-white pb-4 text-lg">{`Q${
               currentQuestionIndex + 1
             }`}</h3>
-          </div>
+          </div> */}
           {/* Image Area */}
           <div className="inline-flex flex-row h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
             <img
-              className={`relative max-w-full max-h-[90vh] h-auto w-auto object-contain md:max-w-3xl lg:max-w-5xl rounded-lg ${
+              className={`relative max-w-full max-h-[78vh] h-auto w-auto object-contain md:max-w-3xl lg:max-w-5xl rounded-lg ${
                 answerSelected && answer === currentQuestion?.correctAnswer
                   ? "border-green-500 border-solid border-4 md:border-0"
                   : ""

@@ -8,7 +8,7 @@ export function Start() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8">
+    <div className="w-full h-[calc(100vh-7rem)] flex flex-col justify-center items-center gap-8">
       <svg
         width="124"
         height="124"

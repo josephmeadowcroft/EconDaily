@@ -12,8 +12,29 @@ export function Navbar() {
 
   return (
     <nav className="bg-darkGrey">
-      {!started ? (
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-8">
+      {started ? (
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
+          <a href="/">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 27L10.8137 18.3561C9.72878 17.3352 9.72878 15.6648 10.8137 14.6439L20 6"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      ) : (
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
           <a
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -30,8 +51,6 @@ export function Navbar() {
             Logout
           </button>
         </div>
-      ) : (
-        ""
       )}
     </nav>
   );

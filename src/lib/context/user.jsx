@@ -82,7 +82,7 @@ export function UserProvider(props) {
     fetchUserEmail();
   }, []);
 
-  // XP Function
+  // Update XP Function
   async function completeQuestions(xp) {
     try {
       if (!userEmail) {
