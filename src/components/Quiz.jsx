@@ -68,7 +68,7 @@ export function Quiz() {
         <Loading />
       ) : (
         <form
-          className={`inline-flex flex-col md:flex-row items-center md:justify-center px-2 md:px-6 md:py-4 relative md:bg-white rounded-3xl overflow-hidden ${
+          className={`inline-flex flex-col md:flex-row items-center md:justify-center px-2 md:px-6 md:py-4 relative md:bg-white rounded-3xl${
             answerSelected && answer === currentQuestion?.correctAnswer
               ? "md:border-green-500 md:border-solid md:border-4"
               : ""
