@@ -13,7 +13,7 @@ export function Navbar() {
   return (
     <nav className="bg-darkGrey">
       {started ? (
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6 min-h-[98px]">
           <a href="/">
             <svg
               width="32"
