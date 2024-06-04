@@ -63,7 +63,7 @@ export function Quiz() {
   const seconds = totalSeconds % 60;
 
   return (
-    <div className="w-full h-[calc(100vh-5rem)] bg-primary absolute top-20 flex justify-center items-start md:items-center">
+    <div className="w-full h-[calc(100vh-7rem)] bg-primary absolute top-20 flex justify-center items-start md:items-center">
       {isLoading ? (
         <Loading />
       ) : (
@@ -74,11 +74,6 @@ export function Quiz() {
               : ""
           }`}
         >
-          {/* <div className="flex flex-col justify-start">
-            <h3 className="md:text-black text-white pb-4 text-lg">{`Q${
-              currentQuestionIndex + 1
-            }`}</h3>
-          </div> */}
           {/* Image Area */}
           <div className="inline-flex flex-row h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
             <img
