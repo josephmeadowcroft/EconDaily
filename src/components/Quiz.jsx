@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useUser } from "../lib/context/user";
 import { Loading } from "./Loading";
@@ -8,6 +7,7 @@ export function Quiz() {
   const {
     isLoading,
     setUserAnswers,
+    userAnswers,
     completeQuestions,
     setStarted,
     setFinished,
@@ -17,7 +17,6 @@ export function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [answerSelected, setAnswerSelected] = useState(false);
-  const [finalAnswer, setFinalAnswer] = useState("");
   const [inputError, setInputError] = useState(false);
 
   useDailyQuestions(setQuestions);
@@ -28,11 +27,11 @@ export function Quiz() {
     event.preventDefault();
     if (currentAnswer !== "") {
       setAnswerSelected(true);
-      setFinalAnswer(currentAnswer);
-      if (event.target.value === currentQuestion.correctAnswer) {
-        setUserAnswers((prevAnswers) => [...prevAnswers, "correct"]);
+      if (currentAnswer === currentQuestion?.correctAnswer) {
+        setUserAnswers((prevAnswers) => [...prevAnswers, 1]);
+        console.log("Correct answer!");
       } else {
-        setUserAnswers((prevAnswers) => [...prevAnswers, "incorrect"]);
+        setUserAnswers((prevAnswers) => [...prevAnswers, 0]);
       }
     } else {
       setInputError(true);
@@ -47,8 +46,6 @@ export function Quiz() {
     if (currentQuestionIndex < 2) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      completeQuestions("280");
-      setUserAnswers();
       setStarted(false);
       setFinished(true);
     }
@@ -77,7 +74,7 @@ export function Quiz() {
       ) : (
         <form
           className={`inline-flex flex-col md:flex-row items-center md:justify-center border-0 px-2 md:px-6 md:py-4 relative md:bg-white rounded-3xl ${
-            answerSelected && finalAnswer === currentQuestion?.correctAnswer
+            answerSelected && currentAnswer === currentQuestion?.correctAnswer
               ? "md:border-green-500 md:border-solid md:border-4"
               : ""
           }`}
@@ -86,7 +83,8 @@ export function Quiz() {
           <div className="inline-flex flex-row h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
             <img
               className={`relative max-w-full max-h-[78vh] h-auto w-auto object-contain md:max-w-3xl border-0 lg:max-w-5xl rounded-lg ${
-                answerSelected && finalAnswer === currentQuestion?.correctAnswer
+                answerSelected &&
+                currentAnswer === currentQuestion?.correctAnswer
                   ? "border-green-500 border-solid border-4 md:border-0"
                   : ""
               }`}
