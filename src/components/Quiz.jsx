@@ -5,14 +5,19 @@ import { Loading } from "./Loading";
 import { useDailyQuestions } from "../hooks/customHooks";
 
 export function Quiz() {
-  const { isLoading, completeQuestions, setStarted, setFinished } = useUser();
+  const {
+    isLoading,
+    setUserAnswers,
+    completeQuestions,
+    setStarted,
+    setFinished,
+  } = useUser();
 
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [correct, setCorrect] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [answerSelected, setAnswerSelected] = useState(false);
-  const [answer, setAnswer] = useState("");
+  const [finalAnswer, setFinalAnswer] = useState("");
   const [inputError, setInputError] = useState(false);
 
   useDailyQuestions(setQuestions);
@@ -23,9 +28,11 @@ export function Quiz() {
     event.preventDefault();
     if (currentAnswer !== "") {
       setAnswerSelected(true);
-      setAnswer(currentAnswer);
+      setFinalAnswer(currentAnswer);
       if (event.target.value === currentQuestion.correctAnswer) {
-        setCorrect(correct + 1);
+        setUserAnswers((prevAnswers) => [...prevAnswers, "correct"]);
+      } else {
+        setUserAnswers((prevAnswers) => [...prevAnswers, "incorrect"]);
       }
     } else {
       setInputError(true);
@@ -41,6 +48,7 @@ export function Quiz() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       completeQuestions("280");
+      setUserAnswers();
       setStarted(false);
       setFinished(true);
     }
@@ -68,8 +76,8 @@ export function Quiz() {
         <Loading />
       ) : (
         <form
-          className={`inline-flex flex-col md:flex-row items-center md:justify-center px-2 md:px-6 md:py-4 relative md:bg-white rounded-3xl${
-            answerSelected && answer === currentQuestion?.correctAnswer
+          className={`inline-flex flex-col md:flex-row items-center md:justify-center border-0 px-2 md:px-6 md:py-4 relative md:bg-white rounded-3xl ${
+            answerSelected && finalAnswer === currentQuestion?.correctAnswer
               ? "md:border-green-500 md:border-solid md:border-4"
               : ""
           }`}
@@ -77,8 +85,8 @@ export function Quiz() {
           {/* Image Area */}
           <div className="inline-flex flex-row h-[50vh] md:h-auto md:w-auto items-center justify-center px-1 py-2 md:bg-white rounded-lg relative flex-[0_0_auto]">
             <img
-              className={`relative max-w-full max-h-[78vh] h-auto w-auto object-contain md:max-w-3xl lg:max-w-5xl rounded-lg ${
-                answerSelected && answer === currentQuestion?.correctAnswer
+              className={`relative max-w-full max-h-[78vh] h-auto w-auto object-contain md:max-w-3xl border-0 lg:max-w-5xl rounded-lg ${
+                answerSelected && finalAnswer === currentQuestion?.correctAnswer
                   ? "border-green-500 border-solid border-4 md:border-0"
                   : ""
               }`}

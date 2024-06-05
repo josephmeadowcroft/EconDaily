@@ -13,7 +13,7 @@ export function Home() {
   }
 
   return (
-    <div className="h-auto w-auto flex justify-center items-center bg-darkGrey">
+    <div className="h-auto w-auto flex justify-center items-center bg-primary">
       {finished ? <Results /> : started ? <Quiz /> : <Start />}
     </div>
   );
