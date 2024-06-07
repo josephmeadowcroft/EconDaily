@@ -6,8 +6,8 @@ import { useDailyQuestions } from "../hooks/customHooks";
 export function Quiz() {
   const {
     isLoading,
-    setUserAnswers,
     userAnswers,
+    setUserAnswers,
     completeQuestions,
     setStarted,
     setFinished,
@@ -18,6 +18,7 @@ export function Quiz() {
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [answerSelected, setAnswerSelected] = useState(false);
   const [inputError, setInputError] = useState(false);
+  const [xp, setXp] = useState(0);
 
   useDailyQuestions(setQuestions);
 
@@ -38,24 +39,45 @@ export function Quiz() {
     }
   };
 
-  const handleNextQuestion = (event) => {
+  const handleNextQuestion = async (event) => {
     event.preventDefault();
     setAnswerSelected(false);
     setCurrentAnswer("");
     setInputError(false);
+
     if (currentQuestionIndex < 2) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      setStarted(false);
-      setFinished(true);
+      calculateXp(async (xpToAdd) => {
+        setXp(xpToAdd);
+        await completeQuestions(xpToAdd); // Pass xpToAdd directly
+        setStarted(false);
+        setFinished(true);
+      });
     }
+  };
+
+  const calculateXp = (callback) => {
+    let xpToAdd = 0;
+
+    userAnswers.forEach((answer, index) => {
+      if (answer === 1 && index < 3) {
+        xpToAdd += 50;
+      }
+    });
+
+    if (totalSeconds <= 50) {
+      xpToAdd += 50 - totalSeconds;
+    }
+
+    // Execute callback with xpToAdd value
+    callback(xpToAdd);
   };
 
   const handleOptionChange = (event) => {
     setCurrentAnswer(event.target.value);
     setInputError(false);
   };
-
   //Timer
   const [totalSeconds, setTotalSeconds] = useState(0);
   useEffect(() => {

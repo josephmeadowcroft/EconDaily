@@ -46,6 +46,45 @@ export async function getDocumentIdByEmail(email) {
   }
 }
 
+export async function getDocumentByEmail(email) {
+  try {
+    const result = await databases.listDocuments(databaseId, collectionId, [
+      Query.equal("email", email),
+    ]);
+
+    if (result.documents.length > 0) {
+      return result.documents[0];
+    } else {
+      console.log("No document found for this email.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error querying document:", error);
+    return null;
+  }
+}
+
+export async function getUserXp() {
+  const email = await getCurrentUserEmail();
+  console.log("Getting XP...");
+
+  if (email) {
+    const document = await getDocumentByEmail(email);
+    console.log(document);
+
+    if (document && "xp" in document) {
+      console.log(document.xp);
+      return document.xp;
+    } else {
+      console.log("XP attribute not found in the document.");
+      return null;
+    }
+  } else {
+    console.log("User email not found.");
+    return null;
+  }
+}
+
 export async function updateDocument(documentId, data) {
   try {
     await databases.updateDocument(databaseId, collectionId, documentId, data);

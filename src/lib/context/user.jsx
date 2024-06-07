@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   getCurrentUserEmail,
   getDocumentIdByEmail,
+  getUserXp,
   updateDocument,
 } from "../appwrite";
 import { account } from "../appwrite";
@@ -85,6 +86,7 @@ export function UserProvider(props) {
 
   // Update XP Function
   async function completeQuestions(xp) {
+    setIsLoading(true);
     try {
       if (!userEmail) {
         throw new Error("User is not logged in");
@@ -95,9 +97,20 @@ export function UserProvider(props) {
         throw new Error("Document ID not found");
       }
 
-      await updateDocument(documentId, { xp });
+      const existingXp = await getUserXp();
+      const newXp =
+        existingXp !== null && existingXp !== undefined ? existingXp + xp : xp;
+
+      if (existingXp === null || existingXp === undefined) {
+        console.log("Existing XP not found, initializing to new XP value.");
+      }
+
+      await updateDocument(documentId, { xp: newXp });
+      console.log(`XP updated to ${newXp}`);
     } catch (error) {
       console.log("Error completing questions:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
