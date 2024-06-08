@@ -26,7 +26,7 @@ const Countdown = () => {
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
   return (
-    <div>
+    <div className="text-center">
       <span className="text-7xl font-semibold">
         {String(hours).padStart(2, "0")}:
       </span>

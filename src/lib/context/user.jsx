@@ -22,6 +22,7 @@ export function UserProvider(props) {
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [dailyXp, setDailyXp] = useState(0);
 
   // Login
   async function login(email, password) {
@@ -147,6 +148,8 @@ export function UserProvider(props) {
         completeQuestions,
         userAnswers,
         setUserAnswers,
+        dailyXp,
+        setDailyXp,
       }}
     >
       {props.children}

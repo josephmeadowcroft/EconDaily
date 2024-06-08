@@ -8,6 +8,7 @@ export function Quiz() {
     isLoading,
     userAnswers,
     setUserAnswers,
+    setDailyXp,
     completeQuestions,
     setStarted,
     setFinished,
@@ -18,7 +19,6 @@ export function Quiz() {
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [answerSelected, setAnswerSelected] = useState(false);
   const [inputError, setInputError] = useState(false);
-  const [xp, setXp] = useState(0);
 
   useDailyQuestions(setQuestions);
 
@@ -49,8 +49,8 @@ export function Quiz() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       calculateXp(async (xpToAdd) => {
-        setXp(xpToAdd);
-        await completeQuestions(xpToAdd); // Pass xpToAdd directly
+        await setDailyXp(xpToAdd);
+        await completeQuestions(xpToAdd);
         setStarted(false);
         setFinished(true);
       });
