@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useUser } from "../lib/context/user";
+import { useEffect, useState } from "react";
+import { getUserXp } from "../lib/appwrite";
 
 export function Navbar() {
   const user = useUser();
@@ -9,6 +11,15 @@ export function Navbar() {
   if (location.pathname === "/login" || location.pathname === "/") {
     return null;
   }
+
+  const [displayedXp, setDisplayedXp] = useState("");
+  useEffect(() => {
+    const fetchXp = async () => {
+      const xp = await getUserXp();
+      setDisplayedXp(JSON.stringify(xp));
+    };
+    fetchXp();
+  });
 
   return (
     <nav className="bg-darkGrey">
@@ -32,6 +43,7 @@ export function Navbar() {
               />
             </svg>
           </a>
+          <p className="text-xl">{displayedXp} XP</p>
         </div>
       ) : (
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
@@ -43,13 +55,18 @@ export function Navbar() {
               EconDaily<span className="text-lightBlue">.</span>
             </span>
           </a>
-          <button
-            type="button"
-            onClick={() => user.logout()}
-            className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          >
-            Logout
-          </button>
+          <div className="flex flew-row items-center text-center gap-4">
+            <p className="text-xl text-center justify-center align-middle ">
+              {displayedXp} XP
+            </p>
+            <button
+              type="button"
+              onClick={() => user.logout()}
+              className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       )}
     </nav>
