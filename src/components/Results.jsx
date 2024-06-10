@@ -1,9 +1,20 @@
 import { useUser } from "../lib/context/user";
 import { Loading } from "./Loading";
 import Countdown from "./Countdown";
+import { useEffect, useState } from "react";
+import { getUserLatestXp } from "../lib/appwrite";
 
 export function Results() {
-  const { isLoading, userAnswers, dailyXp } = useUser();
+  const { isLoading, userAnswers } = useUser();
+
+  const [displayedLatestXp, setDisplayedLatestXp] = useState(0);
+  useEffect(() => {
+    const fetchXp = async () => {
+      const xp = await getUserLatestXp();
+      setDisplayedLatestXp(JSON.stringify(xp));
+    };
+    fetchXp();
+  });
 
   return (
     <div className="w-full h-auto bg-primary justify-center items-center">
@@ -34,7 +45,7 @@ export function Results() {
               ></div>
             </div>
             <p className="text-5xl">
-              <span className="font-semibold">+{dailyXp}</span> XP
+              <span className="font-semibold">+{displayedLatestXp}</span> XP
             </p>
           </div>
           <button

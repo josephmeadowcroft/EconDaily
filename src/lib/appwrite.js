@@ -82,6 +82,24 @@ export async function getUserXp() {
   }
 }
 
+export async function getUserLatestXp() {
+  const email = await getCurrentUserEmail();
+
+  if (email) {
+    const document = await getDocumentByEmail(email);
+
+    if (document && "latestXp" in document) {
+      return document.latestXp;
+    } else {
+      console.log("Latest XP attribute not found in the document.");
+      return null;
+    }
+  } else {
+    console.log("User email not found.");
+    return null;
+  }
+}
+
 export async function updateDocument(documentId, data) {
   try {
     await databases.updateDocument(databaseId, collectionId, documentId, data);

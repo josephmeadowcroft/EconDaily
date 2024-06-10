@@ -1,13 +1,14 @@
 import { ID } from "appwrite";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
+  account,
   getCurrentUserEmail,
   getDocumentIdByEmail,
   getUserXp,
   updateDocument,
+  checkQuizCompletion,
+  updateQuizCompletion,
 } from "../appwrite";
-import { account } from "../appwrite";
-import { checkQuizCompletion, updateQuizCompletion } from "../appwrite";
 
 const UserContext = createContext();
 
@@ -89,6 +90,7 @@ export function UserProvider(props) {
 
   useEffect(() => {
     const getUserData = async () => {
+      setIsLoading(true);
       try {
         const completed = await checkQuizCompletion();
         setHasCompletedQuiz(completed);
@@ -96,6 +98,7 @@ export function UserProvider(props) {
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
+      setIsLoading(false);
     };
 
     getUserData();
@@ -130,6 +133,7 @@ export function UserProvider(props) {
       await updateDocument(documentId, { xp: newXp });
       console.log(`XP updated to ${newXp}`);
       await handleCompletionUpdate();
+      await updateDocument(documentId, { latestXp: xp });
     } catch (error) {
       console.log("Error completing questions:", error);
     } finally {
