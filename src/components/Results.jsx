@@ -3,9 +3,11 @@ import { Loading } from "./Loading";
 import Countdown from "./Countdown";
 import { useEffect, useState } from "react";
 import { getUserLatestXp } from "../lib/appwrite";
+import { Modal } from "./Modal";
 
 export function Results() {
   const { isLoading, userAnswers } = useUser();
+  const [open, setOpen] = useState(false);
 
   const [displayedLatestXp, setDisplayedLatestXp] = useState(0);
   useEffect(() => {
@@ -50,10 +52,32 @@ export function Results() {
           </div>
           <button
             type="button"
+            onClick={() => setOpen(true)}
             className="text-white bg-lightBlue hover:bg-blue-500 font-medium rounded-full text-sm px-5 py-2.5 text-center"
           >
             View leaderboard
           </button>
+
+          <Modal open={open} onClose={() => setOpen(false)}>
+            <div className="text-center w-56">
+              <div className="mx-auto my-4 w-48">
+                <h3 className="text-lg font-black text-gray-800">
+                  Coming soon
+                </h3>
+                <p className="text-sm text-gray-500">
+                  The leaderboard will be available to view soon.
+                </p>
+              </div>
+              <div className="flex justify-center text-center">
+                <button
+                  className="w-auto h-auto px-4 py-2 bg-lightBlue rounded-xl text-center"
+                  onClick={() => setOpen(false)}
+                >
+                  Okay
+                </button>
+              </div>
+            </div>
+          </Modal>
         </div>
       )}
     </div>
