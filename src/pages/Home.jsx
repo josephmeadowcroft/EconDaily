@@ -6,7 +6,7 @@ import { Results } from "../components/Results";
 
 export function Home() {
   const user = useUser();
-  const { started, finished } = useUser();
+  const { started, finished, hasCompletedQuiz } = useUser();
 
   if (!user.current) {
     return <Navigate to="/login" />;
@@ -14,7 +14,13 @@ export function Home() {
 
   return (
     <div className="h-auto w-auto flex justify-center items-center bg-primary">
-      {finished ? <Results /> : started ? <Quiz /> : <Start />}
+      {finished || hasCompletedQuiz ? (
+        <Results />
+      ) : started ? (
+        <Quiz />
+      ) : (
+        <Start />
+      )}
     </div>
   );
 }

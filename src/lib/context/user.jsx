@@ -7,6 +7,7 @@ import {
   updateDocument,
 } from "../appwrite";
 import { account } from "../appwrite";
+import { checkQuizCompletion, updateQuizCompletion } from "../appwrite";
 
 const UserContext = createContext();
 
@@ -23,6 +24,7 @@ export function UserProvider(props) {
   const [finished, setFinished] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
   const [dailyXp, setDailyXp] = useState(0);
+  const [hasCompletedQuiz, setHasCompletedQuiz] = useState(false);
 
   // Login
   async function login(email, password) {
@@ -85,6 +87,25 @@ export function UserProvider(props) {
     fetchUserEmail();
   }, []);
 
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const completed = await checkQuizCompletion();
+        setHasCompletedQuiz(completed);
+        console.log(completed);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    getUserData();
+  }, []);
+
+  const handleCompletionUpdate = async () => {
+    await updateQuizCompletion();
+    setHasCompletedQuiz(true);
+  };
+
   // Update XP Function
   async function completeQuestions(xp) {
     setIsLoading(true);
@@ -108,6 +129,7 @@ export function UserProvider(props) {
 
       await updateDocument(documentId, { xp: newXp });
       console.log(`XP updated to ${newXp}`);
+      await handleCompletionUpdate();
     } catch (error) {
       console.log("Error completing questions:", error);
     } finally {
@@ -150,6 +172,7 @@ export function UserProvider(props) {
         setUserAnswers,
         dailyXp,
         setDailyXp,
+        hasCompletedQuiz,
       }}
     >
       {props.children}
