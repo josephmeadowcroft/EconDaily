@@ -22,7 +22,6 @@ export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [dailyQuestions, setDailyQuestions] = useState([]);
   const [started, setStarted] = useState(false);
-  const [finished, setFinished] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
   const [dailyXp, setDailyXp] = useState(0);
   const [hasCompletedQuiz, setHasCompletedQuiz] = useState(false);
@@ -132,7 +131,7 @@ export function UserProvider(props) {
 
       await updateDocument(documentId, { xp: newXp });
       console.log(`XP updated to ${newXp}`);
-      await handleCompletionUpdate();
+      // await handleCompletionUpdate();
       await updateDocument(documentId, { latestXp: xp });
     } catch (error) {
       console.log("Error completing questions:", error);
@@ -169,14 +168,13 @@ export function UserProvider(props) {
         setDailyQuestions,
         started,
         setStarted,
-        finished,
-        setFinished,
         completeQuestions,
         userAnswers,
         setUserAnswers,
         dailyXp,
         setDailyXp,
         hasCompletedQuiz,
+        setHasCompletedQuiz,
       }}
     >
       {props.children}

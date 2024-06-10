@@ -8,10 +8,10 @@ export function Quiz() {
     isLoading,
     userAnswers,
     setUserAnswers,
+    setHasCompletedQuiz,
     setDailyXp,
     completeQuestions,
     setStarted,
-    setFinished,
   } = useUser();
 
   const [questions, setQuestions] = useState([]);
@@ -52,7 +52,7 @@ export function Quiz() {
         await setDailyXp(xpToAdd);
         await completeQuestions(xpToAdd);
         setStarted(false);
-        setFinished(true);
+        setHasCompletedQuiz(true);
       });
     }
   };

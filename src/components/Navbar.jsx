@@ -15,8 +15,17 @@ export function Navbar() {
   const [displayedXp, setDisplayedXp] = useState("");
   useEffect(() => {
     const fetchXp = async () => {
-      const xp = await getUserXp();
-      setDisplayedXp(JSON.stringify(xp));
+      try {
+        const xp = await getUserXp();
+
+        if (xp == null) {
+          setDisplayedXp("0");
+        } else {
+          setDisplayedXp(JSON.stringify(xp));
+        }
+      } catch (error) {
+        console.log("Error fetching XP:" + error);
+      }
     };
     fetchXp();
   });
